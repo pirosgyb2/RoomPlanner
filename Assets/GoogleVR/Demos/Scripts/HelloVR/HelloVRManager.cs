@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace GoogleVR.HelloVR {
+namespace GoogleVR.GVRDemo {
   using UnityEngine;
   using GoogleVR.Demos;
 
-  public class HelloVRManager : MonoBehaviour {
+  public class GVRDemoManager : MonoBehaviour {
     public GameObject m_launchVrHomeButton;
     public DemoInputManager m_demoInputManager;
 

@@ -117,10 +117,6 @@ public class GvrLaserVisual : MonoBehaviour, IGvrArmModelReceiver {
     }
   }
 
-  public float CurrentDistance {
-    get { return currentDistance; }
-  }
-
   protected virtual void Awake() {
     Laser = GetComponent<LineRenderer>();
   }

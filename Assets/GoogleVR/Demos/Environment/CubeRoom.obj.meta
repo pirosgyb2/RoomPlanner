@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 0d17106c40ecd4920976ddf8d6effd9b
-timeCreated: 1509059845
+guid: 1b781ad67e8a54061b9897ddfbfdb479
+timeCreated: 1478024238
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: CubeRoom_GEO
+    100002: cubeRoomEnv
     400000: //RootNode
-    400002: CubeRoom_GEO
-    2300000: CubeRoom_GEO
-    3300000: CubeRoom_GEO
-    4300000: CubeRoom_GEO
+    400002: cubeRoomEnv
+    2300000: cubeRoomEnv
+    3300000: cubeRoomEnv
+    4300000: cubeRoomEnv
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
@@ -22,8 +22,6 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -35,7 +33,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -60,7 +58,6 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -71,10 +68,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
-    skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1

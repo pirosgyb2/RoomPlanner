@@ -12,38 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace GoogleVR.HelloVR {
+namespace GoogleVR.GVRDemo {
   using UnityEngine;
 
   [RequireComponent(typeof(Collider))]
-  public class ObjectController : MonoBehaviour {
+  public class Teleport : MonoBehaviour {
     private Vector3 startingPosition;
-    private Renderer renderer;
 
     public Material inactiveMaterial;
     public Material gazedAtMaterial;
 
     void Start() {
       startingPosition = transform.localPosition;
-      renderer = GetComponent<Renderer>();
       SetGazedAt(false);
     }
 
     public void SetGazedAt(bool gazedAt) {
       if (inactiveMaterial != null && gazedAtMaterial != null) {
-        renderer.material = gazedAt ? gazedAtMaterial : inactiveMaterial;
+        GetComponent<Renderer>().material = gazedAt ? gazedAtMaterial : inactiveMaterial;
         return;
       }
+      GetComponent<Renderer>().material.color = gazedAt ? Color.green : Color.red;
     }
 
     public void Reset() {
-      int sibIdx = transform.GetSiblingIndex();
-      int numSibs = transform.parent.childCount;
-      for (int i=0; i<numSibs; i++) {
-        GameObject sib = transform.parent.GetChild(i).gameObject;
-        sib.transform.localPosition = startingPosition;
-        sib.SetActive(i == sibIdx);
-      }
+      transform.localPosition = startingPosition;
     }
 
     public void Recenter() {
@@ -57,28 +50,10 @@ namespace GoogleVR.HelloVR {
     }
 
     public void TeleportRandomly() {
-      // Pick a random sibling, move them somewhere random, activate them,
-      // deactivate ourself.
-      int sibIdx = transform.GetSiblingIndex();
-      int numSibs = transform.parent.childCount;
-      sibIdx = (sibIdx + Random.Range(1, numSibs)) % numSibs;
-      GameObject randomSib = transform.parent.GetChild(sibIdx).gameObject;
-
-      // Move to random new location ±100º horzontal.
-      Vector3 direction = Quaternion.Euler(
-          0,
-          Random.Range(-90, 90),
-          0) * Vector3.forward;
-      // New location between 1.5m and 3.5m.
+      Vector3 direction = Random.onUnitSphere;
+      direction.y = Mathf.Clamp(direction.y, 0.5f, 1f);
       float distance = 2 * Random.value + 1.5f;
-      Vector3 newPos = direction * distance;
-      // Limit vertical position to be fully in the room.
-      newPos.y = Mathf.Clamp(newPos.y, -1.2f, 4f);
-      randomSib.transform.localPosition = newPos;
-
-      randomSib.SetActive(true);
-      gameObject.SetActive(false);
-      SetGazedAt(false);
+      transform.localPosition = direction * distance;
     }
   }
 }

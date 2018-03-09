@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-Shader "GoogleVR/Demos/Unlit/HelloVR Color From Grayscale"
+Shader "GoogleVR/Demos/Unlit/GVRDemo Color From Grayscale"
 {
   Properties
   {

@@ -86,13 +86,7 @@ public class GvrHeadset : MonoBehaviour {
       if (instance == null) {
         return false;
       }
-      try {
-        return instance.headsetProvider.SupportsPositionalTracking;
-      }
-      catch(Exception e) {
-        Debug.LogError("Error reading SupportsPositionalTracking: " + e.Message);
-        return false;
-      }
+      return instance.headsetProvider.SupportsPositionalTracking;
     }
   }
 
