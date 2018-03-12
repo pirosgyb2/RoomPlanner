@@ -56,3 +56,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Google example assets
+/Assets/DaydreamElements*
+/Assets/DaydreamRenderer*
