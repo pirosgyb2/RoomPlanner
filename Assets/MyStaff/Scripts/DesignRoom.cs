@@ -32,7 +32,7 @@ public class DesignRoom : MonoBehaviour {
 		return;
 	}
 	IEnumerator LoadAsyncScene(){
-		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync ("DesignRoom",LoadSceneMode.Additive);
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync ("DesignRoom");
 
 		while (!asyncLoad.isDone) {
 			yield return null;

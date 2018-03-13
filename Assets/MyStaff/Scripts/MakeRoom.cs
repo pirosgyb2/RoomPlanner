@@ -34,7 +34,7 @@ public class MakeRoom : MonoBehaviour {
 	}
 
 	IEnumerator LoadAsyncScene(){
-		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync ("MakeRoom",LoadSceneMode.Additive);
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync ("MakeRoom");
 
 		while(!asyncLoad.isDone){
 			yield return null;
