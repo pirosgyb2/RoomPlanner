@@ -157,6 +157,12 @@ Prefab:
       propertyPath: laserPointer
       value: 
       objectReference: {fileID: 1912689467}
+    - target: {fileID: 114923670348081554, guid: 898d6de4f1abd2c47b9ae75db214518d,
+        type: 2}
+      propertyPath: menuTree
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cfe9981c89faf04899f5e9dffa700dc,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 898d6de4f1abd2c47b9ae75db214518d, type: 2}
   m_IsPrefabParent: 0
@@ -657,6 +663,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1c78e88b129d93439b8390eb34f0691, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &807615192 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1033177195532252, guid: 898d6de4f1abd2c47b9ae75db214518d,
+    type: 2}
+  m_PrefabInternal: {fileID: 86356999}
+--- !u!114 &807615193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 807615192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17507bdc9f2ca69418fe8fe8cad9ec02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &905245996
 GameObject:
   m_ObjectHideFlags: 0

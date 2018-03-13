@@ -15,7 +15,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace DaydreamElements.ClickMenu {
+//namespace DaydreamElements.ClickMenu {
+using DaydreamElements.ClickMenu;
 
   /// This script is attached to the game object responsible for spawning
   /// the click menu.
@@ -35,7 +36,7 @@ namespace DaydreamElements.ClickMenu {
     public delegate void MenuClosedEvent();
     public event MenuClosedEvent OnMenuClosed;
 
-    public delegate void ItemSelectedEvent(ClickMenuItem id);
+	public delegate void ItemSelectedEvent(ClickMenuItem id);
     public event ItemSelectedEvent OnItemSelected;
 
     public delegate void ItemHoveredEvent(ClickMenuItem id);
@@ -207,4 +208,4 @@ namespace DaydreamElements.ClickMenu {
       }
     }
   }
-}
+//}
