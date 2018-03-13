@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 97864494}
   - component: {fileID: 97864493}
   - component: {fileID: 97864492}
+  - component: {fileID: 97864497}
   - component: {fileID: 97864491}
   - component: {fileID: 97864490}
   m_Layer: 0
@@ -286,7 +287,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 97864497}
           m_MethodName: SetGazedAt
           m_Mode: 6
           m_Arguments:
@@ -303,7 +304,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 97864497}
           m_MethodName: SetGazedAt
           m_Mode: 6
           m_Arguments:
@@ -320,19 +321,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 97864497}
           m_MethodName: SetClicked
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_MethodName: AddWall
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -412,6 +402,19 @@ Transform:
   m_Father: {fileID: 859434101}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 88, z: 0}
+--- !u!114 &97864497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 97864489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a43afe2932c2e44872b52c157b4eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactiveMaterial: {fileID: 2100000, guid: 419b6b6ddae3c9048a83b24e3ad7b7e5, type: 2}
+  gazedAtMaterial: {fileID: 2100000, guid: acef366fdca31a74480d3c042275dff2, type: 2}
 --- !u!1 &247360065
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +856,7 @@ GameObject:
   - component: {fileID: 1368811458}
   - component: {fileID: 1368811457}
   - component: {fileID: 1368811456}
+  - component: {fileID: 1368811463}
   m_Layer: 0
   m_Name: DesignRoomButton
   m_TagString: Untagged
@@ -947,17 +951,6 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_MethodName: SetClicked
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
           m_MethodName: AddWall
           m_Mode: 1
           m_Arguments:
@@ -1038,6 +1031,19 @@ Transform:
   m_Father: {fileID: 859434101}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 92, z: 0}
+--- !u!114 &1368811463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368811455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7903df2e89cdfc243995fa45147d0adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactiveMaterial: {fileID: 0}
+  gazedAtMaterial: {fileID: 0}
 --- !u!1001 &1394717065
 Prefab:
   m_ObjectHideFlags: 0
