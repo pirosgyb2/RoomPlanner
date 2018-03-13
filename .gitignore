@@ -58,5 +58,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # Google example assets
-/Assets/DaydreamElements*
-/Assets/DaydreamRenderer*
+#/Assets/DaydreamElements*
+#/Assets/DaydreamRenderer*
