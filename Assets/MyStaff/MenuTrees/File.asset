@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3d3480dc2db50146bf7ac1c7c2d6e77, type: 3}
-  m_Name: MakeRoom_Add
+  m_Name: File
   m_EditorClassIdentifier: 
-  id: 1
-  icon: {fileID: 21300000, guid: 9cc47b1c71be4403f84edf5b19dd307a, type: 3}
+  id: 2
+  icon: {fileID: 21300000, guid: b5fd4cd1dcecda14c9f7318218a7c49e, type: 3}
   background: {fileID: 0}
-  toolTip: Add
+  toolTip: File
   closeAfterSelected: 1

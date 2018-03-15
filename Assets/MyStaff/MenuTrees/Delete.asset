@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3d3480dc2db50146bf7ac1c7c2d6e77, type: 3}
-  m_Name: MakeRoom_View
+  m_Name: Delete
   m_EditorClassIdentifier: 
-  id: 3
-  icon: {fileID: 21300000, guid: a48f38dac3bdf428baf63f934cbab2a7, type: 3}
+  id: 4
+  icon: {fileID: 21300000, guid: 699ed843060b7ee4ba54377ddf44558e, type: 3}
   background: {fileID: 0}
-  toolTip: View
+  toolTip: Delete
   closeAfterSelected: 1

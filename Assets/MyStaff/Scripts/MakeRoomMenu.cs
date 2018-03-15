@@ -11,9 +11,15 @@ public class MakeRoomMenu : MonoBehaviour {
 		gameObject.GetComponent<ClickMenuRoot> ().OnItemSelected += Switcher;
 	}
 
-	void Switcher(ClickMenuItem id){
-		if(id.id==0){
-			StartCoroutine (LoadAsyncScene ());
+	void Switcher(ClickMenuItem item){
+		if (item != null) {
+			switch (item.id) {
+			case 0:
+				StartCoroutine (LoadAsyncScene ());
+				break;
+			default:
+				break;			
+			}
 		}
 	}
 
