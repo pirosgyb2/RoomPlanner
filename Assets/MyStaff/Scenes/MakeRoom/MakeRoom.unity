@@ -684,6 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 1129420907310770, guid: 85ea1f3817e05cb4a8c9626b833581de, type: 2}
+  room: {fileID: 824780213}
 --- !u!1 &824780213
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +693,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 824780214}
+  - component: {fileID: 824780215}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -706,12 +708,24 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824780213}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.018781666, y: 1.8977156, z: -2.5884833}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824780215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 824780213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9e98c223161d648a570add9b0af8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wall: {fileID: 1129420907310770, guid: 85ea1f3817e05cb4a8c9626b833581de, type: 2}
 --- !u!1 &905245996
 GameObject:
   m_ObjectHideFlags: 0

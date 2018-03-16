@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: SideView
   m_EditorClassIdentifier: 
   id: 8
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 2fdb57ce924537b46a975aca7b728914, type: 3}
   background: {fileID: 0}
-  toolTip: 
+  toolTip: Side
   closeAfterSelected: 1

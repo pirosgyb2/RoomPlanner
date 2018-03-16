@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: PerspView
   m_EditorClassIdentifier: 
   id: 9
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 9e6506f490b78014ebd2c62e05f1ff18, type: 3}
   background: {fileID: 0}
-  toolTip: 
+  toolTip: Perspective
   closeAfterSelected: 1

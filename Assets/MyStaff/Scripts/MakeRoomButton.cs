@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(Collider))]
-public class MakeRoom : MonoBehaviour {
-	private Vector3 startingPosition;
-	private Renderer renderer;
+public class MakeRoomButton : MonoBehaviour {
+	private Renderer _renderer;
 
 
 	public Material inactiveMaterial;
@@ -15,14 +14,13 @@ public class MakeRoom : MonoBehaviour {
 
 
 	void Start() {
-		startingPosition = transform.localPosition;
-		renderer = GetComponent<Renderer>();
+		_renderer = GetComponent<Renderer>();
 		SetGazedAt(false);
 	}
 
 	public void SetGazedAt(bool gazedAt) {
 		if (inactiveMaterial != null && gazedAtMaterial != null) {
-			renderer.material = gazedAt ? gazedAtMaterial : inactiveMaterial ;
+			_renderer.material = gazedAt ? gazedAtMaterial : inactiveMaterial ;
 			return;
 		}
 	}
@@ -41,7 +39,6 @@ public class MakeRoom : MonoBehaviour {
 		}
 
 	}
-
 
 }
 

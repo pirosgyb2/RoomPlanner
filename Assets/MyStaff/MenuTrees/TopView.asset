@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: TopView
   m_EditorClassIdentifier: 
   id: 7
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6bc7e19d56ad9234ab159286bff9fc1e, type: 3}
   background: {fileID: 0}
-  toolTip: 
+  toolTip: Top
   closeAfterSelected: 1
