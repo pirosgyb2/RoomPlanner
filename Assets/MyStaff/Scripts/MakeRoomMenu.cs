@@ -47,6 +47,8 @@ public class MakeRoomMenu : MonoBehaviour {
 				break;
 			case 9: //PerspView
 				break;
+			case 10: //PerspView
+				break;
 
 			default:
 				break;			
