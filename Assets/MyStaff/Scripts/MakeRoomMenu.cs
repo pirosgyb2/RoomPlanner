@@ -10,6 +10,7 @@ public class MakeRoomMenu : MonoBehaviour {
 
 	public GameObject wall;
 	public GameObject room;
+	public Camera mainCamera;
 
 	void Awake(){
 		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
@@ -42,10 +43,12 @@ public class MakeRoomMenu : MonoBehaviour {
 			case 6: //Save
 				break;
 			case 7: //TopView
+				mainCamera.orthographic=true;
 				break;
 			case 8: //SideView
 				break;
 			case 9: //PerspView
+				mainCamera.orthographic=false;
 				break;
 			case 10: //PerspView
 				break;

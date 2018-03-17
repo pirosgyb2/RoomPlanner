@@ -12,6 +12,7 @@ public class Room : MonoBehaviour {
 
 	public GameObject wall;
 	private string saveFolder;
+	private int selectedWallIndex = -1;
 
 	void Awake(){
 		saveFolder = Application.persistentDataPath + "/LastEditedRoom";
@@ -110,5 +111,16 @@ public class Room : MonoBehaviour {
 		for (int i = 0; i < transform.childCount; i++) {
 			Destroy (transform.GetChild (i).gameObject);
 		}
+	}
+
+	public void SetSelectedWallIndex(int childIndex){
+		selectedWallIndex = childIndex;
+	}
+	public int GetSelectedWallIndex(){
+		return selectedWallIndex;
+	}
+
+	public GameObject GetChild(int childIndex){
+		return transform.GetChild (childIndex).gameObject;
 	}
 }

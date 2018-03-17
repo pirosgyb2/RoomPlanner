@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d3480dc2db50146bf7ac1c7c2d6e77, type: 3}
   m_Name: NewRoom
   m_EditorClassIdentifier: 
-  id: 0
-  icon: {fileID: 0}
+  id: 10
+  icon: {fileID: 21300000, guid: 07ea6d136bcb4bf4bb200c121d12bc5c, type: 3}
   background: {fileID: 0}
-  toolTip: 
+  toolTip: NewRoom
   closeAfterSelected: 1

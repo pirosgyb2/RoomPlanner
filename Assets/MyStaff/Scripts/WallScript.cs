@@ -13,8 +13,11 @@ public class WallScript : MonoBehaviour {
 	public Material selectedMaterial;
 
 	private Renderer _renderer;
+	private Room parentScript;
+	private bool selected=false;
 
 	void Awake(){
+		parentScript=transform.parent.GetComponent<Room> ();
 		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
 	}
 
@@ -25,12 +28,32 @@ public class WallScript : MonoBehaviour {
 
 	public void SetGazedAt(bool gazedAt) {
 		if (inactiveMaterial != null && gazedAtMaterial != null) {
-			_renderer.material = gazedAt ? gazedAtMaterial : inactiveMaterial ;
+			if(!selected){
+				_renderer.material = gazedAt ? gazedAtMaterial : inactiveMaterial ;
+			}
 			return;
 		}
 	}
 
-	public void SetClicked(){		
+	private void ChangeMaterialToInactive(){
+		if (inactiveMaterial != null) {
+			_renderer.material = inactiveMaterial;
+		}
+	}
+
+	public void SetClicked(){
+		int previousSelectedIndex = parentScript.GetSelectedWallIndex ();
+
+
+		//ha van kijelolt es ez a kijelolt nem onmaga akkor
+		if(previousSelectedIndex > -1 && previousSelectedIndex != transform.GetSiblingIndex()){
+			GameObject previousSelected=parentScript.transform.GetChild (previousSelectedIndex).gameObject;
+			previousSelected.GetComponent<WallScript> ().ChangeMaterialToInactive ();
+			previousSelected.GetComponent<WallScript> ().selected = false;
+		}
+
+		selected = true;
+		parentScript.SetSelectedWallIndex (transform.GetSiblingIndex ());
 		if (selectedMaterial != null) {
 			_renderer.material = selectedMaterial;
 		}
