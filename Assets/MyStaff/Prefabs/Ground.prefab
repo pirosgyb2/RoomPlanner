@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 23770253461538472}
   - component: {fileID: 114520325245981870}
   - component: {fileID: 114759880636213868}
+  - component: {fileID: 114799463103298194}
+  - component: {fileID: 114416117618864360}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -99,6 +101,36 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114416117618864360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1871556533548934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114799463103298194}
+          m_MethodName: Clicked
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!114 &114520325245981870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,3 +167,14 @@ MonoBehaviour:
   m_originalMesh: {fileID: 0}
   m_lightingMeshName: default_-182746000
   m_bakeId: -182746000
+--- !u!114 &114799463103298194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1871556533548934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd3435ed1480de4cbef97e52faa52f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

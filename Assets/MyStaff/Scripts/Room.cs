@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
+//using UnityEditor;
 
 
 
@@ -118,6 +118,10 @@ public class Room : MonoBehaviour {
 	}
 	public int GetSelectedWallIndex(){
 		return selectedWallIndex;
+	}
+
+	public GameObject GetSelectedWall(){
+		return (selectedWallIndex != -1 ?GetChild(selectedWallIndex):null);
 	}
 
 	public GameObject GetChild(int childIndex){

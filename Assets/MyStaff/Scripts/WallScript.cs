@@ -11,10 +11,13 @@ public class WallScript : MonoBehaviour {
 	public Material inactiveMaterial;
 	public Material gazedAtMaterial;
 	public Material selectedMaterial;
+	public GameObject panel;
 
 	private Renderer _renderer;
 	private Room parentScript;
 	private bool selected=false;
+	private bool isPanelOpenedYet= false;
+	private GameObject instantiatedPanel;
 
 	void Awake(){
 		parentScript=transform.parent.GetComponent<Room> ();
@@ -35,21 +38,32 @@ public class WallScript : MonoBehaviour {
 		}
 	}
 
-	private void ChangeMaterialToInactive(){
+	public void SetInactive(){
 		if (inactiveMaterial != null) {
 			_renderer.material = inactiveMaterial;
+			Destroy (instantiatedPanel);
+			isPanelOpenedYet = false;
+			print("Toroltem a panelt");
 		}
 	}
 
 	public void SetClicked(){
+
+
 		int previousSelectedIndex = parentScript.GetSelectedWallIndex ();
-
-
 		//ha van kijelolt es ez a kijelolt nem onmaga akkor
 		if(previousSelectedIndex > -1 && previousSelectedIndex != transform.GetSiblingIndex()){
 			GameObject previousSelected=parentScript.transform.GetChild (previousSelectedIndex).gameObject;
-			previousSelected.GetComponent<WallScript> ().ChangeMaterialToInactive ();
+			previousSelected.GetComponent<WallScript> ().SetInactive ();
 			previousSelected.GetComponent<WallScript> ().selected = false;
+		}
+
+		if (!isPanelOpenedYet) {
+			instantiatedPanel=Instantiate (panel, new Vector3 (-3, 4.5f, 0.7f), Quaternion.identity);
+			isPanelOpenedYet = true;
+			//TODO: a fal adja át önmagát a panelnak, vagy valahoyg a panel érje el a falat
+			//instantiatedPanel.transform.GetChild ().GetComponent<WallCustomizePanel> ();
+			print ("Uj panelt hoztam letre");
 		}
 
 		selected = true;

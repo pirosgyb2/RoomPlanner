@@ -175,3 +175,4 @@ MonoBehaviour:
   inactiveMaterial: {fileID: 2100000, guid: a04cefc6427db3c409578cab509f3091, type: 2}
   gazedAtMaterial: {fileID: 2100000, guid: a04c95a12b8fc3c4c89b684f9f3985cf, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 25f7f2890fcff974bbd5e6d2fb028420, type: 2}
+  panel: {fileID: 1252530043489470, guid: ca1d395055423d540baa99e35c6f0461, type: 2}
