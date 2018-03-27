@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour {
 
@@ -8,20 +9,27 @@ public class ButtonScript : MonoBehaviour {
 	public string changingProperty; //height, width, thickness, rotation
 
 	private GameObject wall;
+	private Text heightText;
+	private Text widthText;
+	private Text thicknessText;
+	private Text rotationText;
+
+
 
 	void Start(){
 		wall = transform.parent.GetComponent<WallCustomizePanel> ().wall;
+		heightText = GameObject.Find ("HeightValueText").GetComponent<Text>();
+		widthText  = GameObject.Find ("WidthValueText").GetComponent<Text>();
+		thicknessText  = GameObject.Find ("ThicknessValueText").GetComponent<Text>();
+		rotationText  = GameObject.Find ("RotationValueText").GetComponent<Text>();
 	}
 
 
 	public void Down(){
-		print("Before: " + wall.transform.localScale.ToString());
 		Changing (-1);
-		print("After : " + wall.transform.localScale.ToString());
 	}
 
 	public void Up(){
-		print("UP fuggvenybe bejutottam");
 		Changing (1);
 	}
 
@@ -54,7 +62,7 @@ public class ButtonScript : MonoBehaviour {
 			} else if (measurement.ToLower () == "cm") {
 				DoScale(xyzNumber, AddValue / 10);
 			} else {
-				print ("Rosszul irtadbe az editorban a panelnek a measurement erteket: " + measurement.ToLower ());
+				print ("Rosszul irtad be az editorban a panelnek a measurement erteket: " + measurement.ToLower ());
 			}
 		}
 		else{
@@ -62,7 +70,7 @@ public class ButtonScript : MonoBehaviour {
 				DoRotation(AddValue*5);
 			} 
 			else {
-				print ("Rosszul irtadbe az editorban a panelnek a measurement erteket: " + measurement.ToLower ());
+				print ("Rosszul irtad be az editorban a panelnek a measurement erteket: " + measurement.ToLower ());
 			}
 		}
 	}
@@ -73,16 +81,20 @@ public class ButtonScript : MonoBehaviour {
 
 		switch(xyzNumber){
 		case 1:	
-			if((AddValue<0 && temp.x>0) || AddValue>0)  //hogy ne legyen negatív egyik scale erteke se
-			temp.x += AddValue;
+			if ((AddValue < 0 && temp.x > 0) || AddValue > 0)   //hogy ne legyen negatív egyik scale erteke se
+				temp.x += AddValue;	
+			widthText.text = (Mathf.Round(temp.x*100)).ToString();
 			break;
 		case 2:
-			if((AddValue<0 && temp.y>0) || AddValue>0)  //hogy ne legyen negatív egyik scale erteke se
-			temp.y += AddValue;
+			if ((AddValue < 0 && temp.y > 0) || AddValue > 0)  //hogy ne legyen negatív egyik scale erteke se
+				temp.y += AddValue;
+			heightText.text = (Mathf.Round(temp.y*100)).ToString();
 			break;
 		case 3:
-			if((AddValue<0 && temp.z>0) || AddValue>0)  //hogy ne legyen negatív egyik scale erteke se
-			temp.z += AddValue;
+			if ((AddValue < 0 && temp.z > 0.0001) || AddValue > 0)  //hogy ne legyen negatív egyik scale erteke se
+				temp.z += AddValue;
+			print ("thickness" + temp.z);
+			thicknessText.text = (Mathf.Round(temp.z*100)).ToString();
 			break;
 		}
 
@@ -92,5 +104,6 @@ public class ButtonScript : MonoBehaviour {
 	private void DoRotation(float AddValue){
 		print("DoRotate fuggvenybe bejutottam");
 		wall.transform.Rotate (0,AddValue,0);
+		rotationText.text = (Mathf.Round(wall.transform.localRotation.eulerAngles.y)).ToString();
 	}
 }
