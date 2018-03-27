@@ -11,6 +11,8 @@ public class MakeRoomMenu : MonoBehaviour {
 	public GameObject wall;
 	public GameObject room;
 	public Camera mainCamera;
+	public ClickMenuTree DefaultMenuTree;
+	public ClickMenuTree SelectedWallMenuTree;
 
 	void Awake(){
 		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
@@ -52,7 +54,12 @@ public class MakeRoomMenu : MonoBehaviour {
 				break;
 			case 10: //PerspView
 				break;
-
+			case 11: //Move
+				print("Move");
+				break;
+			case 12: //Delete wall
+				print("Delete wall");
+				break;
 			default:
 				break;			
 			}
@@ -66,5 +73,14 @@ public class MakeRoomMenu : MonoBehaviour {
 			yield return null;
 		}
 
+	}
+
+	public void ChangeToAlterMenu(bool toAlterMenu){
+		if (toAlterMenu) {
+			gameObject.GetComponent<ClickMenuRoot> ().menuTree = SelectedWallMenuTree;
+		}
+		else{
+			gameObject.GetComponent<ClickMenuRoot> ().menuTree = DefaultMenuTree;
+		}
 	}
 }

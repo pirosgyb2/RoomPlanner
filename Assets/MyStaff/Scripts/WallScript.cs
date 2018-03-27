@@ -44,12 +44,12 @@ public class WallScript : MonoBehaviour {
 			_renderer.material = inactiveMaterial;
 			Destroy (instantiatedPanel);
 			isPanelOpenedYet = false;
+			GameObject.Find ("MenuRoot").GetComponent<MakeRoomMenu> ().ChangeToAlterMenu (false);
 			print("Toroltem a panelt");
 		}
 	}
 
 	public void SetClicked(){
-		
 		int previousSelectedIndex = parentScript.GetSelectedWallIndex ();
 		//ha van kijelolt es ez a kijelolt nem onmaga akkor
 		if(previousSelectedIndex > -1 && previousSelectedIndex != transform.GetSiblingIndex()){
@@ -57,6 +57,8 @@ public class WallScript : MonoBehaviour {
 			previousSelected.GetComponent<WallScript> ().SetInactive ();
 			previousSelected.GetComponent<WallScript> ().selected = false;
 		}
+
+		GameObject.Find ("MenuRoot").GetComponent<MakeRoomMenu> ().ChangeToAlterMenu (true);
 
 		if (!isPanelOpenedYet) {
 			instantiatedPanel=Instantiate (panel, new Vector3 (-3, 4.5f, 0.7f), Quaternion.identity);
