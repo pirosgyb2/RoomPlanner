@@ -37,6 +37,7 @@ public class WallScript : MonoBehaviour {
 			return;
 		}
 	}
+		
 
 	public void SetInactive(){
 		if (inactiveMaterial != null) {
@@ -48,8 +49,7 @@ public class WallScript : MonoBehaviour {
 	}
 
 	public void SetClicked(){
-
-
+		
 		int previousSelectedIndex = parentScript.GetSelectedWallIndex ();
 		//ha van kijelolt es ez a kijelolt nem onmaga akkor
 		if(previousSelectedIndex > -1 && previousSelectedIndex != transform.GetSiblingIndex()){
@@ -61,9 +61,13 @@ public class WallScript : MonoBehaviour {
 		if (!isPanelOpenedYet) {
 			instantiatedPanel=Instantiate (panel, new Vector3 (-3, 4.5f, 0.7f), Quaternion.identity);
 			isPanelOpenedYet = true;
-			//TODO: a fal adja át önmagát a panelnak, vagy valahoyg a panel érje el a falat
-			//instantiatedPanel.transform.GetChild ().GetComponent<WallCustomizePanel> ();
+
+			instantiatedPanel.transform.GetChild (0).GetComponent<WallCustomizePanel> ().wall=gameObject; 
 			print ("Uj panelt hoztam letre");
+		}
+		else{
+			Destroy (instantiatedPanel);
+			isPanelOpenedYet = false;
 		}
 
 		selected = true;

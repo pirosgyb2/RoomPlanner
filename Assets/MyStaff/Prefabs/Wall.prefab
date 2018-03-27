@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d221c86c0d7f13a42b800699e1aa83b9, type: 2}
+  - {fileID: 2100000, guid: a04cefc6427db3c409578cab509f3091, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -175,4 +175,4 @@ MonoBehaviour:
   inactiveMaterial: {fileID: 2100000, guid: a04cefc6427db3c409578cab509f3091, type: 2}
   gazedAtMaterial: {fileID: 2100000, guid: a04c95a12b8fc3c4c89b684f9f3985cf, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 25f7f2890fcff974bbd5e6d2fb028420, type: 2}
-  panel: {fileID: 1252530043489470, guid: ca1d395055423d540baa99e35c6f0461, type: 2}
+  panel: {fileID: 1507911488658270, guid: ca1d395055423d540baa99e35c6f0461, type: 2}

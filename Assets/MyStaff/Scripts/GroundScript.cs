@@ -6,9 +6,11 @@ public class GroundScript : MonoBehaviour {
 
 	public void Clicked(){
 		GameObject room=GameObject.Find ("Room");
-		GameObject selectedWall = room.GetComponent<Room> ().GetSelectedWall ();
-		if (selectedWall != null) {
-			selectedWall.GetComponent<WallScript> ().SetInactive ();
+		if (room != null) {
+			GameObject selectedWall = room.GetComponent<Room> ().GetSelectedWall ();
+			if (selectedWall != null) {
+				selectedWall.GetComponent<WallScript> ().SetInactive ();
+			}
 		}
 	}
 }

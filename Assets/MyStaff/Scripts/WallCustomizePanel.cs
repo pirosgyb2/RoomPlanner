@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WallCustomizePanel : MonoBehaviour {
 
-	private GameObject room;
+	public GameObject wall;
+
 
 
 }

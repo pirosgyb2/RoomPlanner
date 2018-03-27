@@ -9,31 +9,37 @@ public class ButtonScript : MonoBehaviour {
 
 	private GameObject wall;
 
+	void Start(){
+		wall = transform.parent.GetComponent<WallCustomizePanel> ().wall;
+	}
+
+
 	public void Down(){
-		wall = transform.parent.GetComponent<Room> ().GetSelectedWall ();
+		print("Before: " + wall.transform.localScale.ToString());
 		Changing (-1);
+		print("After : " + wall.transform.localScale.ToString());
 	}
 
 	public void Up(){
-		wall = transform.parent.GetComponent<Room> ().GetSelectedWall ();
+		print("UP fuggvenybe bejutottam");
 		Changing (1);
 	}
 
 	//number =1 vagy -1
-	private void Changing(int number){
+	private void Changing(float AddValue){
 		
 		switch (changingProperty.ToLower ()) {
 		case "height":
-			ChangeProperty (number,true,2);
+			ChangeProperty (AddValue,true,2);
 			break;
 		case "width":
-			ChangeProperty (number,true,1);
+			ChangeProperty (AddValue,true,1);
 			break;
 		case "thickness":
-			ChangeProperty (number,true,3);
+			ChangeProperty (AddValue,true,3);
 			break;
 		case "rotation":
-			ChangeProperty (number,false);
+			ChangeProperty (AddValue,false);
 			break;
 		default:
 			print ("Rosszul irtadbe az editorban a panelnek a changingProperty erteket: " + changingProperty.ToLower ());
@@ -41,19 +47,19 @@ public class ButtonScript : MonoBehaviour {
 		}
 	}
 
-	private void ChangeProperty( int number,bool isSizeProperty,int xyzNumber=2){
+	private void ChangeProperty( float AddValue,bool isSizeProperty,int xyzNumber=2){
 		if (isSizeProperty) {
 			if (measurement.ToLower () == "m") {
-				DoChange( xyzNumber,  number);
+				DoScale( xyzNumber,  AddValue);
 			} else if (measurement.ToLower () == "cm") {
-				DoChange(xyzNumber, number / 10);
+				DoScale(xyzNumber, AddValue / 10);
 			} else {
 				print ("Rosszul irtadbe az editorban a panelnek a measurement erteket: " + measurement.ToLower ());
 			}
 		}
 		else{
-			if (measurement.ToLower () == "˚") {
-				DoChange( 2,  number);
+			if (measurement.ToLower () == "degree") {
+				DoRotation(AddValue*5);
 			} 
 			else {
 				print ("Rosszul irtadbe az editorban a panelnek a measurement erteket: " + measurement.ToLower ());
@@ -61,23 +67,30 @@ public class ButtonScript : MonoBehaviour {
 		}
 	}
 
-	private void DoChange(int xyzNumber, int number ){
+	private void DoScale(int xyzNumber, float AddValue ){
+		//Vector3 temp = wall.GetComponent<WallScript> ().transform.localScale;
+		Vector3 temp = wall.transform.localScale;
+
 		switch(xyzNumber){
-		case 1:
-			Vector3 temp = wall.GetComponent<WallScript> ().transform.localScale;
-			temp.x += number;
-			wall.GetComponent<WallScript> ().transform.localScale = temp;
+		case 1:	
+			if((AddValue<0 && temp.x>0) || AddValue>0)  //hogy ne legyen negatív egyik scale erteke se
+			temp.x += AddValue;
 			break;
 		case 2:
-			Vector3 temp2 = wall.GetComponent<WallScript> ().transform.localScale;
-			temp2.y += number;
-			wall.GetComponent<WallScript> ().transform.localScale = temp2;
+			if((AddValue<0 && temp.y>0) || AddValue>0)  //hogy ne legyen negatív egyik scale erteke se
+			temp.y += AddValue;
 			break;
 		case 3:
-			Vector3 temp3 = wall.GetComponent<WallScript> ().transform.localScale;
-			temp3.z += number;
-			wall.GetComponent<WallScript> ().transform.localScale = temp3;
+			if((AddValue<0 && temp.z>0) || AddValue>0)  //hogy ne legyen negatív egyik scale erteke se
+			temp.z += AddValue;
 			break;
 		}
+
+		wall.transform.localScale=temp;
+	}
+
+	private void DoRotation(float AddValue){
+		print("DoRotate fuggvenybe bejutottam");
+		wall.transform.Rotate (0,AddValue,0);
 	}
 }
