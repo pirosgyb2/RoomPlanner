@@ -31,7 +31,7 @@ public class MakeRoomMenu : MonoBehaviour {
 				StartCoroutine (LoadAsyncScene ());
 				break;
 			case 1: //Add
-				Instantiate (wall,new Vector3(0,0.5f,1),Quaternion.identity,room.transform);
+				Instantiate (wall,new Vector3(0,0.5f,0),Quaternion.identity,room.transform);
 				break;
 			case 2: //File
 				break;
@@ -55,9 +55,16 @@ public class MakeRoomMenu : MonoBehaviour {
 			case 10: //PerspView
 				break;
 			case 11: //Move
-				print("Move");
+				GameObject selectedWall = GameObject.FindGameObjectWithTag ("SelectedWall");
+
+				selectedWall.GetComponent<WallScript> ().SwitchMoveablePhysicsScript (true);
+				//selectedWall.GetComponent<WallScript> ().SetMoveMode (true);
+
 				break;
 			case 12: //Delete wall
+				GameObject.FindGameObjectWithTag("SelectedWall").GetComponent<WallScript>().SwitchMoveablePhysicsScript(false);
+				break;
+			case 13: //Delete wall
 				print("Delete wall");
 				break;
 			default:

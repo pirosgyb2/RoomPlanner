@@ -13,11 +13,13 @@ public class WallScript : MonoBehaviour {
 	public Material selectedMaterial;
 	public GameObject panel;
 
+	private DaydreamElements.ObjectManipulation.MoveablePhysicsObject moveablePhysicsScript;
 	private Renderer _renderer;
 	private Room parentScript;
 	private bool selected=false;
 	private bool isPanelOpenedYet= false;
 	private GameObject instantiatedPanel;
+	private int clickCount;
 
 	void Awake(){
 		parentScript=transform.parent.GetComponent<Room> ();
@@ -27,6 +29,17 @@ public class WallScript : MonoBehaviour {
 	void Start() {
 		_renderer = GetComponent<Renderer>();
 		SetGazedAt(false);
+		moveablePhysicsScript= gameObject.GetComponent<DaydreamElements.ObjectManipulation.MoveablePhysicsObject> ();
+		moveablePhysicsScript.enabled = false;
+	}
+
+	public void SwitchMoveablePhysicsScript(bool enable){
+		if(enable){
+			moveablePhysicsScript.enabled=true;	
+		}
+		else{
+			moveablePhysicsScript.enabled=false;	
+		}
 	}
 
 	public void SetGazedAt(bool gazedAt) {
@@ -42,15 +55,26 @@ public class WallScript : MonoBehaviour {
 	public void SetInactive(){
 		if (inactiveMaterial != null) {
 			_renderer.material = inactiveMaterial;
-			Destroy (instantiatedPanel);
+			print("Toroltem a panelt. ID: " + instantiatedPanel.GetInstanceID());
+			Destroy (instantiatedPanel.gameObject);
+
 			isPanelOpenedYet = false;
+			//parentScript.SetSelectedWallIndex (-1);
 			GameObject.Find ("MenuRoot").GetComponent<MakeRoomMenu> ().ChangeToAlterMenu (false);
-			print("Toroltem a panelt");
+			selected = false;
+			gameObject.tag="Untagged";
+			moveablePhysicsScript.enabled = false;
+
 		}
 	}
 
 	public void SetClicked(){
 		int previousSelectedIndex = parentScript.GetSelectedWallIndex ();
+
+		//GameObject previousSelected =null;
+		//previousSelected =GameObject.FindWithTag("SelectedWall");
+		//int previousSelectedIndex = GameObject.FindWithTag("SelectedWall").transform.GetSiblingIndex();
+	
 		//ha van kijelolt es ez a kijelolt nem onmaga akkor
 		if(previousSelectedIndex > -1 && previousSelectedIndex != transform.GetSiblingIndex()){
 			GameObject previousSelected=parentScript.transform.GetChild (previousSelectedIndex).gameObject;
@@ -58,25 +82,28 @@ public class WallScript : MonoBehaviour {
 			previousSelected.GetComponent<WallScript> ().selected = false;
 		}
 
+		gameObject.tag="SelectedWall";
 		GameObject.Find ("MenuRoot").GetComponent<MakeRoomMenu> ().ChangeToAlterMenu (true);
 
 		if (!isPanelOpenedYet) {
 			instantiatedPanel=Instantiate (panel, new Vector3 (-3, 4.5f, 0.7f), Quaternion.identity);
 			isPanelOpenedYet = true;
 
-			instantiatedPanel.transform.GetChild (0).GetComponent<WallCustomizePanel> ().wall=gameObject; 
-			print ("Uj panelt hoztam letre");
+			//instantiatedPanel.transform.GetChild (0).GetComponent<WallCustomizePanel> ().wall=gameObject; 
+			print ("Uj panelt hoztam letre. ID: " + instantiatedPanel.GetInstanceID());
 		}
 		else{
 			Destroy (instantiatedPanel);
 			isPanelOpenedYet = false;
 		}
 
+
 		selected = true;
 		parentScript.SetSelectedWallIndex (transform.GetSiblingIndex ());
 		if (selectedMaterial != null) {
 			_renderer.material = selectedMaterial;
 		}
+
 		return;
 	}
 

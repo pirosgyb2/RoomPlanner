@@ -17,11 +17,7 @@ public class ButtonScript : MonoBehaviour {
 
 
 	void Start(){
-		wall = transform.parent.GetComponent<WallCustomizePanel> ().wall;
-		heightText = GameObject.Find ("HeightValueText").GetComponent<Text>();
-		widthText  = GameObject.Find ("WidthValueText").GetComponent<Text>();
-		thicknessText  = GameObject.Find ("ThicknessValueText").GetComponent<Text>();
-		rotationText  = GameObject.Find ("RotationValueText").GetComponent<Text>();
+		UpdateTextsAndWall ();
 	}
 
 
@@ -76,7 +72,8 @@ public class ButtonScript : MonoBehaviour {
 	}
 
 	private void DoScale(int xyzNumber, float AddValue ){
-		//Vector3 temp = wall.GetComponent<WallScript> ().transform.localScale;
+		
+		UpdateTextsAndWall ();
 		Vector3 temp = wall.transform.localScale;
 
 		switch(xyzNumber){
@@ -102,8 +99,19 @@ public class ButtonScript : MonoBehaviour {
 	}
 
 	private void DoRotation(float AddValue){
-		print("DoRotate fuggvenybe bejutottam");
+		UpdateTextsAndWall ();
 		wall.transform.Rotate (0,AddValue,0);
 		rotationText.text = (Mathf.Round(wall.transform.localRotation.eulerAngles.y)).ToString();
 	}
+
+	private void UpdateTextsAndWall(){		
+		wall = GameObject.FindGameObjectWithTag ("SelectedWall");
+
+		heightText = GameObject.Find ("HeightValueText").GetComponent<Text>();
+		widthText  = GameObject.Find ("WidthValueText").GetComponent<Text>();
+		thicknessText  = GameObject.Find ("ThicknessValueText").GetComponent<Text>();
+		rotationText  = GameObject.Find ("RotationValueText").GetComponent<Text>();
+	}
+
+
 }

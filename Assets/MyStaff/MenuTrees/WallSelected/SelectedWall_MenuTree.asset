@@ -19,9 +19,12 @@ MonoBehaviour:
   tree:
     serializedRoot:
     - value: {fileID: 11400000}
-      childrenCount: 2
+      childrenCount: 3
       expanded: 1
     - value: {fileID: 11400000, guid: b5b46aebc2d5f464080fb075941cb8a7, type: 2}
+      childrenCount: 0
+      expanded: 1
+    - value: {fileID: 11400000, guid: dbaf8bc0807c43743a823e3823654fab, type: 2}
       childrenCount: 0
       expanded: 1
     - value: {fileID: 11400000, guid: cc79630f2daffe94caa89be9f7de7689, type: 2}
