@@ -14,6 +14,8 @@ public class MakeRoomMenu : MonoBehaviour {
 	public ClickMenuTree DefaultMenuTree;
 	public ClickMenuTree SelectedWallMenuTree;
 
+	private GameObject selectedWall;
+
 	void Awake(){
 		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
 	}
@@ -24,6 +26,9 @@ public class MakeRoomMenu : MonoBehaviour {
 	}
 
 	void Switcher(ClickMenuItem item){
+
+		selectedWall = GameObject.FindGameObjectWithTag ("SelectedWall");
+
 		if (item != null) {
 			switch (item.id) {
 			case 0: //Home
@@ -55,17 +60,15 @@ public class MakeRoomMenu : MonoBehaviour {
 			case 10: //PerspView
 				break;
 			case 11: //Move
-				GameObject selectedWall = GameObject.FindGameObjectWithTag ("SelectedWall");
-
+				
 				selectedWall.GetComponent<WallScript> ().SwitchMoveablePhysicsScript (true);
-				//selectedWall.GetComponent<WallScript> ().SetMoveMode (true);
-
 				break;
-			case 12: //Delete wall
-				GameObject.FindGameObjectWithTag("SelectedWall").GetComponent<WallScript>().SwitchMoveablePhysicsScript(false);
+			case 12: //Edit wall
+				//GameObject.FindGameObjectWithTag("SelectedWall").GetComponent<WallScript>().SwitchMoveablePhysicsScript(false);
+				selectedWall.GetComponent<WallScript>().SwitchMoveablePhysicsScript(false);
 				break;
 			case 13: //Delete wall
-				print("Delete wall");
+				selectedWall.GetComponent<WallScript>().Delete();
 				break;
 			default:
 				break;			

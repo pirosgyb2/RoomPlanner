@@ -12,6 +12,7 @@ public class WallScript : MonoBehaviour {
 	public Material gazedAtMaterial;
 	public Material selectedMaterial;
 	public GameObject panel;
+	public string filePath;
 
 	private DaydreamElements.ObjectManipulation.MoveablePhysicsObject moveablePhysicsScript;
 	private Renderer _renderer;
@@ -20,6 +21,8 @@ public class WallScript : MonoBehaviour {
 	private bool isPanelOpenedYet= false;
 	private GameObject instantiatedPanel;
 	private int clickCount;
+
+
 
 	void Awake(){
 		parentScript=transform.parent.GetComponent<Room> ();
@@ -30,7 +33,8 @@ public class WallScript : MonoBehaviour {
 		_renderer = GetComponent<Renderer>();
 		SetGazedAt(false);
 		moveablePhysicsScript= gameObject.GetComponent<DaydreamElements.ObjectManipulation.MoveablePhysicsObject> ();
-		moveablePhysicsScript.enabled = false;
+		SwitchMoveablePhysicsScript(false);
+
 	}
 
 	public void SwitchMoveablePhysicsScript(bool enable){
@@ -38,7 +42,9 @@ public class WallScript : MonoBehaviour {
 			moveablePhysicsScript.enabled=true;	
 		}
 		else{
-			moveablePhysicsScript.enabled=false;	
+			moveablePhysicsScript.enabled=false;
+			print ("savelt");
+			transform.parent.GetComponent<Room>().Save ();
 		}
 	}
 
@@ -55,7 +61,6 @@ public class WallScript : MonoBehaviour {
 	public void SetInactive(){
 		if (inactiveMaterial != null) {
 			_renderer.material = inactiveMaterial;
-			print("Toroltem a panelt. ID: " + instantiatedPanel.GetInstanceID());
 			Destroy (instantiatedPanel.gameObject);
 
 			isPanelOpenedYet = false;
@@ -63,7 +68,7 @@ public class WallScript : MonoBehaviour {
 			GameObject.Find ("MenuRoot").GetComponent<MakeRoomMenu> ().ChangeToAlterMenu (false);
 			selected = false;
 			gameObject.tag="Untagged";
-			moveablePhysicsScript.enabled = false;
+			SwitchMoveablePhysicsScript(false);
 
 		}
 	}
@@ -90,7 +95,6 @@ public class WallScript : MonoBehaviour {
 			isPanelOpenedYet = true;
 
 			//instantiatedPanel.transform.GetChild (0).GetComponent<WallCustomizePanel> ().wall=gameObject; 
-			print ("Uj panelt hoztam letre. ID: " + instantiatedPanel.GetInstanceID());
 		}
 		else{
 			Destroy (instantiatedPanel);
@@ -114,9 +118,18 @@ public class WallScript : MonoBehaviour {
 		WallData dat = new WallData ();
 
 		dat.siblingIndex = gameObject.transform.GetSiblingIndex();
-		dat.x = gameObject.transform.position.x;
-		dat.y = gameObject.transform.position.y;
-		dat.z = gameObject.transform.position.z;
+		dat.px = gameObject.transform.position.x;
+		dat.py = gameObject.transform.position.y;
+		dat.pz = gameObject.transform.position.z;
+
+		dat.sx = gameObject.transform.localScale.x;
+		dat.sy = gameObject.transform.localScale.y;
+		dat.sz = gameObject.transform.localScale.z;
+
+		dat.rx = gameObject.transform.localRotation.x;
+		dat.ry = gameObject.transform.localRotation.y;
+		dat.rz = gameObject.transform.localRotation.z;
+		dat.rw = gameObject.transform.localRotation.w;
 
 		binary.Serialize (file, dat);
 		file.Close ();
@@ -130,10 +143,27 @@ public class WallScript : MonoBehaviour {
 			WallData dat = (WallData)binary.Deserialize (file);
 			file.Close ();
 
-			transform.position = new Vector3(dat.x,dat.y,dat.z);
+			transform.localRotation = new Quaternion (dat.rx, dat.ry, dat.rz,dat.rw);
+			transform.localScale = new Vector3 (dat.sx,dat.sy,dat.sz);
+			transform.position = new Vector3(dat.px,dat.py,dat.pz);
 			transform.SetSiblingIndex( dat.siblingIndex);	
 		}
 			
 	}
 
+	public void Delete(){
+		string path = Application.persistentDataPath + "/LastEditedRoom/wall" + transform.GetSiblingIndex () + ".dat";
+		if (File.Exists (path)) {
+
+			SetInactive ();
+
+			File.Delete (path);
+
+			#if UNITY_EDITOR
+			UnityEditor.AssetDatabase.Refresh();
+			#endif
+
+			DestroyObject (gameObject);
+		}
+	}
 }

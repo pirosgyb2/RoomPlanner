@@ -6,7 +6,16 @@ using UnityEngine;
 public class WallData {
 
 	public int siblingIndex;
-	public float x;
-	public float y;
-	public float z;
+	public float px;
+	public float py;
+	public float pz;
+
+	public float sx;
+	public float sy;
+	public float sz;
+
+	public float rx;
+	public float ry;
+	public float rz;
+	public float rw;
 }

@@ -8,7 +8,7 @@ public class ButtonScript : MonoBehaviour {
 	public string measurement; //m ,cm, ˚
 	public string changingProperty; //height, width, thickness, rotation
 
-	private GameObject wall;
+	private GameObject wall=null;
 	private Text heightText;
 	private Text widthText;
 	private Text thicknessText;
@@ -22,11 +22,16 @@ public class ButtonScript : MonoBehaviour {
 
 
 	public void Down(){
+		UpdateTextsAndWall ();
 		Changing (-1);
+		wall.transform.parent.GetComponent<Room> ().Save ();
+		print (Application.persistentDataPath);
 	}
 
 	public void Up(){
+		UpdateTextsAndWall ();
 		Changing (1);
+		wall.transform.parent.GetComponent<Room> ().Save ();
 	}
 
 	//number =1 vagy -1
@@ -73,7 +78,7 @@ public class ButtonScript : MonoBehaviour {
 
 	private void DoScale(int xyzNumber, float AddValue ){
 		
-		UpdateTextsAndWall ();
+		//UpdateTextsAndWall ();
 		Vector3 temp = wall.transform.localScale;
 
 		switch(xyzNumber){
@@ -90,7 +95,6 @@ public class ButtonScript : MonoBehaviour {
 		case 3:
 			if ((AddValue < 0 && temp.z > 0.0001) || AddValue > 0)  //hogy ne legyen negatív egyik scale erteke se
 				temp.z += AddValue;
-			print ("thickness" + temp.z);
 			thicknessText.text = (Mathf.Round(temp.z*100)).ToString();
 			break;
 		}
@@ -99,7 +103,7 @@ public class ButtonScript : MonoBehaviour {
 	}
 
 	private void DoRotation(float AddValue){
-		UpdateTextsAndWall ();
+		//UpdateTextsAndWall ();
 		wall.transform.Rotate (0,AddValue,0);
 		rotationText.text = (Mathf.Round(wall.transform.localRotation.eulerAngles.y)).ToString();
 	}

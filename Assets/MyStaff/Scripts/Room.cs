@@ -112,7 +112,11 @@ public class Room : MonoBehaviour {
 			Destroy (transform.GetChild (i).gameObject);
 		}
 	}
-
+	/*
+	public void DestroyWall(int childIndex){
+		File.Delete (Application.persistentDataPath+"/LastEditedRoom"+);
+	}
+*/
 	public void SetSelectedWallIndex(int childIndex){
 		selectedWallIndex = childIndex;
 	}
