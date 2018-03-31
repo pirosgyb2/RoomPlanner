@@ -25,7 +25,6 @@ public class ButtonScript : MonoBehaviour {
 		UpdateTextsAndWall ();
 		Changing (-1);
 		wall.transform.parent.GetComponent<Room> ().Save ();
-		print (Application.persistentDataPath);
 	}
 
 	public void Up(){

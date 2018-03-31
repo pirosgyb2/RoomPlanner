@@ -13,6 +13,7 @@ public class WallScript : MonoBehaviour {
 	public Material selectedMaterial;
 	public GameObject panel;
 	public string filePath;
+	public Vector3 startingPosition;
 
 	private DaydreamElements.ObjectManipulation.MoveablePhysicsObject moveablePhysicsScript;
 	private Renderer _renderer;
@@ -21,7 +22,6 @@ public class WallScript : MonoBehaviour {
 	private bool isPanelOpenedYet= false;
 	private GameObject instantiatedPanel;
 	private int clickCount;
-
 
 
 	void Awake(){
@@ -34,7 +34,7 @@ public class WallScript : MonoBehaviour {
 		SetGazedAt(false);
 		moveablePhysicsScript= gameObject.GetComponent<DaydreamElements.ObjectManipulation.MoveablePhysicsObject> ();
 		SwitchMoveablePhysicsScript(false);
-
+		transform.GetSiblingIndex ();
 	}
 
 	public void SwitchMoveablePhysicsScript(bool enable){
@@ -43,7 +43,6 @@ public class WallScript : MonoBehaviour {
 		}
 		else{
 			moveablePhysicsScript.enabled=false;
-			print ("savelt");
 			transform.parent.GetComponent<Room>().Save ();
 		}
 	}
@@ -152,18 +151,27 @@ public class WallScript : MonoBehaviour {
 	}
 
 	public void Delete(){
-		string path = Application.persistentDataPath + "/LastEditedRoom/wall" + transform.GetSiblingIndex () + ".dat";
+		string path = Application.persistentDataPath + "/LastEditedRoom/wall" + transform.GetSiblingIndex() + ".dat";
 		if (File.Exists (path)) {
 
 			SetInactive ();
 
-			File.Delete (path);
+			transform.parent = null;
+			Destroy (gameObject);
 
 			#if UNITY_EDITOR
 			UnityEditor.AssetDatabase.Refresh();
 			#endif
 
-			DestroyObject (gameObject);
+
+			//print (transform.parent.transform.childCount);
+
+			string filePath=path.Replace('\\','/');
+			File.SetAttributes (filePath, FileAttributes.Normal);
+			File.Delete (filePath);
+
+			//transform.parent.GetComponent<Room> ().Save ();
+
 		}
 	}
 }

@@ -36,7 +36,8 @@ public class MakeRoomMenu : MonoBehaviour {
 				StartCoroutine (LoadAsyncScene ());
 				break;
 			case 1: //Add
-				Instantiate (wall,new Vector3(0,0.5f,0),Quaternion.identity,room.transform);
+				if(!room.GetComponent<Room>().IsAnithingAtSpwanPlace())
+					Instantiate (wall,wall.GetComponent<WallScript>().startingPosition,Quaternion.identity,room.transform);
 				break;
 			case 2: //File
 				break;
@@ -68,7 +69,8 @@ public class MakeRoomMenu : MonoBehaviour {
 				selectedWall.GetComponent<WallScript>().SwitchMoveablePhysicsScript(false);
 				break;
 			case 13: //Delete wall
-				selectedWall.GetComponent<WallScript>().Delete();
+				selectedWall.GetComponent<WallScript> ().Delete ();
+				room.GetComponent<Room> ().Save ();
 				break;
 			default:
 				break;			

@@ -112,11 +112,19 @@ public class Room : MonoBehaviour {
 			Destroy (transform.GetChild (i).gameObject);
 		}
 	}
-	/*
-	public void DestroyWall(int childIndex){
-		File.Delete (Application.persistentDataPath+"/LastEditedRoom"+);
+
+
+	public bool IsAnithingAtSpwanPlace(){
+		bool isOnSpawnPlace = false;
+		for (int i = 0; i < transform.childCount; i++) {
+			WallScript wall = transform.GetChild (i).GetComponent<WallScript> ();
+			if(wall.transform.position==wall.startingPosition){
+				isOnSpawnPlace = true;
+			}
+		}
+		return isOnSpawnPlace;
 	}
-*/
+
 	public void SetSelectedWallIndex(int childIndex){
 		selectedWallIndex = childIndex;
 	}
