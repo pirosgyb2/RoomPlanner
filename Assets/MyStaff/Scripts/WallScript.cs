@@ -90,7 +90,7 @@ public class WallScript : MonoBehaviour {
 		GameObject.Find ("MenuRoot").GetComponent<MakeRoomMenu> ().ChangeToAlterMenu (true);
 
 		if (!isPanelOpenedYet) {
-			instantiatedPanel=Instantiate (panel, new Vector3 (-3, 4.5f, 0.7f), Quaternion.identity);
+			instantiatedPanel=Instantiate (panel, new Vector3 (-3, 2.5f, 2f), Quaternion.identity);
 			isPanelOpenedYet = true;
 
 			//instantiatedPanel.transform.GetChild (0).GetComponent<WallCustomizePanel> ().wall=gameObject; 

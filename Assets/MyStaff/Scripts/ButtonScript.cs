@@ -24,12 +24,14 @@ public class ButtonScript : MonoBehaviour {
 	public void Down(){
 		UpdateTextsAndWall ();
 		Changing (-1);
+		PutWallToGround ();
 		wall.transform.parent.GetComponent<Room> ().Save ();
 	}
 
 	public void Up(){
 		UpdateTextsAndWall ();
 		Changing (1);
+		PutWallToGround ();
 		wall.transform.parent.GetComponent<Room> ().Save ();
 	}
 
@@ -38,7 +40,7 @@ public class ButtonScript : MonoBehaviour {
 		
 		switch (changingProperty.ToLower ()) {
 		case "height":
-			ChangeProperty (AddValue,true,2);
+			ChangeProperty (AddValue, true, 2);
 			break;
 		case "width":
 			ChangeProperty (AddValue,true,1);
@@ -116,5 +118,9 @@ public class ButtonScript : MonoBehaviour {
 		rotationText  = GameObject.Find ("RotationValueText").GetComponent<Text>();
 	}
 
+	private void PutWallToGround(){
+		Vector3 posNow = wall.transform.position;
+		wall.transform.position = new Vector3(posNow.x,wall.transform.localScale.y / 2,posNow.z);
+	}
 
 }
