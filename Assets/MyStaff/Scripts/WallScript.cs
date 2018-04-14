@@ -156,6 +156,7 @@ public class WallScript : MonoBehaviour {
 
 			SetInactive ();
 
+			transform.parent.GetComponent<Room> ().SetSelectedWallIndex (-1);
 			transform.parent = null;
 			Destroy (gameObject);
 

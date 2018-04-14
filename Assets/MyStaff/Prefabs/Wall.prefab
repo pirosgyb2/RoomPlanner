@@ -193,6 +193,8 @@ MonoBehaviour:
   gazedAtMaterial: {fileID: 2100000, guid: a04c95a12b8fc3c4c89b684f9f3985cf, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 25f7f2890fcff974bbd5e6d2fb028420, type: 2}
   panel: {fileID: 1468883575718380, guid: ca1d395055423d540baa99e35c6f0461, type: 2}
+  filePath: 
+  startingPosition: {x: 0, y: 0.5, z: 0}
 --- !u!114 &114692052621081334
 MonoBehaviour:
   m_ObjectHideFlags: 1
