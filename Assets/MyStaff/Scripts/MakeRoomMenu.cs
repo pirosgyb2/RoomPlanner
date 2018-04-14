@@ -10,9 +10,15 @@ public class MakeRoomMenu : MonoBehaviour {
 
 	public GameObject wall;
 	public GameObject room;
+
+	public GameObject topView;
+	public GameObject sideView;
+
 	public Camera mainCamera;
 	public ClickMenuTree DefaultMenuTree;
 	public ClickMenuTree SelectedWallMenuTree;
+
+
 
 	private GameObject selectedWall;
 
@@ -50,18 +56,17 @@ public class MakeRoomMenu : MonoBehaviour {
 				break;
 			case 6: //Save
 				break;
-			case 7: //TopView
-				mainCamera.orthographic=true;
+			case 7: //TopView				
+				SwitchViewPanel (topView);
 				break;
-			case 8: //SideView
+			case 8: //SideView				
+				SwitchViewPanel (sideView);
 				break;
-			case 9: //PerspView
-				mainCamera.orthographic=false;
+			case 9: //------nothing (perspView volt itt)
 				break;
-			case 10: //PerspView
+			case 10: //NewRoom
 				break;
-			case 11: //Move
-				
+			case 11: //Move				
 				selectedWall.GetComponent<WallScript> ().SwitchMoveablePhysicsScript (true);
 				break;
 			case 12: //Edit wall
@@ -93,6 +98,15 @@ public class MakeRoomMenu : MonoBehaviour {
 		}
 		else{
 			gameObject.GetComponent<ClickMenuRoot> ().menuTree = DefaultMenuTree;
+		}
+	}
+
+	private void SwitchViewPanel(GameObject panel){
+		if(!panel.activeSelf){
+			panel.SetActive (true);
+		}
+		else{
+			panel.SetActive (false);
 		}
 	}
 }
