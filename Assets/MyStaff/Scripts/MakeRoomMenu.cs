@@ -13,6 +13,9 @@ public class MakeRoomMenu : MonoBehaviour {
 
 	public GameObject topView;
 	public GameObject sideView;
+	public GameObject loadPanel;
+	public GameObject savePanel;
+	public GameObject keyboard;
 
 	public Camera mainCamera;
 	public ClickMenuTree DefaultMenuTree;
@@ -53,14 +56,17 @@ public class MakeRoomMenu : MonoBehaviour {
 				room.GetComponent<Room> ().DestroyWalls();
 				break;
 			case 5: //Load
+				SwitchOnOffPanel(loadPanel);
 				break;
 			case 6: //Save
+				SwitchOnOffPanel (savePanel);
+				SwitchOnOffPanel (keyboard);
 				break;
 			case 7: //TopView				
-				SwitchViewPanel (topView);
+				SwitchOnOffPanel (topView);
 				break;
 			case 8: //SideView				
-				SwitchViewPanel (sideView);
+				SwitchOnOffPanel (sideView);
 				break;
 			case 9: //------nothing (perspView volt itt)
 				break;
@@ -101,7 +107,7 @@ public class MakeRoomMenu : MonoBehaviour {
 		}
 	}
 
-	private void SwitchViewPanel(GameObject panel){
+	private void SwitchOnOffPanel(GameObject panel){
 		if(!panel.activeSelf){
 			panel.SetActive (true);
 		}
