@@ -113,7 +113,7 @@ public class WallScript : MonoBehaviour {
 	public void Save(){
 
 		BinaryFormatter binary = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/LastEditedRoom/wall" + transform.GetSiblingIndex().ToString() + ".dat");
+		FileStream file = File.Create (Application.persistentDataPath + "/"+parentScript.GetSaveFolderName() +"/wall" + transform.GetSiblingIndex().ToString() + ".dat");
 		WallData dat = new WallData ();
 
 		dat.siblingIndex = gameObject.transform.GetSiblingIndex();
@@ -135,10 +135,10 @@ public class WallScript : MonoBehaviour {
 	}
 
 	public void Load(int id){
-		if (File.Exists (Application.persistentDataPath + "/LastEditedRoom/wall" + id.ToString () + ".dat")){
+		if (File.Exists (Application.persistentDataPath +"/"+parentScript.GetSaveFolderName() +"/wall" + id.ToString () + ".dat")){
 			
 			BinaryFormatter binary = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/LastEditedRoom/wall" + id.ToString () + ".dat",FileMode.Open);
+			FileStream file = File.Open (Application.persistentDataPath + "/"+parentScript.GetSaveFolderName() +"/wall" + id.ToString () + ".dat",FileMode.Open);
 			WallData dat = (WallData)binary.Deserialize (file);
 			file.Close ();
 
@@ -151,7 +151,7 @@ public class WallScript : MonoBehaviour {
 	}
 
 	public void Delete(){
-		string path = Application.persistentDataPath + "/LastEditedRoom/wall" + transform.GetSiblingIndex() + ".dat";
+		string path = Application.persistentDataPath + "/"+parentScript.GetSaveFolderName() +"/wall" + transform.GetSiblingIndex() + ".dat";
 		if (File.Exists (path)) {
 
 			SetInactive ();

@@ -11,22 +11,25 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class Room : MonoBehaviour {
 
 	public GameObject wall;
-	private string saveFolder;
+	private string saveFolderPath;
+	private string saveFolderName;
+	public readonly string defaultSaveFolderName="LastEditedRoom";
 	private int selectedWallIndex = -1;
 
 	void Awake(){
-		saveFolder = Application.persistentDataPath + "/LastEditedRoom";
+		saveFolderPath = Application.persistentDataPath + "/"+defaultSaveFolderName;
+		saveFolderName = defaultSaveFolderName;
 		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes"); //ez a szerialiazlo miatt kell elvielg, midnen scriptbe ahol binaryformattert hasznalok
 	}
 
 	public void Save(){
 
 		//Eloszor toroljuk ha volt valami korabbrol ebben a mappaban, ha nem is letezett a mappa akkor letrehozzuk
-		if (!Directory.Exists (saveFolder)) {
-			Directory.CreateDirectory (saveFolder);
+		if (!Directory.Exists (saveFolderPath)) {
+			Directory.CreateDirectory (saveFolderPath);
 		}
 		else{
-			EmptyFolder (saveFolder);
+			EmptyFolder (saveFolderPath);
 		}
 
 		//elmentjuk a szoba falait
@@ -34,7 +37,7 @@ public class Room : MonoBehaviour {
 
 		//kiirjuk fajlba h hany fal volt
 		BinaryFormatter binary = new BinaryFormatter ();
-		FileStream file = File.Create (saveFolder+"/room.dat");
+		FileStream file = File.Create (saveFolderPath+"/room.dat");
 		RoomData dat = new RoomData ();
 
 		dat.childCount = transform.childCount;
@@ -63,9 +66,9 @@ public class Room : MonoBehaviour {
 
 	private int GetChildCount(){
 		int childCount = 0;
-		if(File.Exists(saveFolder+"/room.dat")){
+		if(File.Exists(saveFolderPath+"/room.dat")){
 			BinaryFormatter binary = new BinaryFormatter ();
-			FileStream file = File.Open (saveFolder+"/room.dat", FileMode.Open);
+			FileStream file = File.Open (saveFolderPath+"/room.dat", FileMode.Open);
 			RoomData dat = (RoomData)binary.Deserialize (file);
 			childCount = dat.childCount;
 			file.Close ();
@@ -107,12 +110,15 @@ public class Room : MonoBehaviour {
 	}
 
 	public void DestroyWalls(){
-		EmptyFolder (Application.persistentDataPath + "/LastEditedRoom");
+		EmptyFolder (Application.persistentDataPath + "/"+defaultSaveFolderName);
+		DestroyChildObjects ();
+	}
+
+	public void DestroyChildObjects(){
 		for (int i = 0; i < transform.childCount; i++) {
 			Destroy (transform.GetChild (i).gameObject);
 		}
 	}
-
 
 	public bool IsAnithingAtSpwanPlace(){
 		bool isOnSpawnPlace = false;
@@ -138,5 +144,19 @@ public class Room : MonoBehaviour {
 
 	public GameObject GetChild(int childIndex){
 		return transform.GetChild (childIndex).gameObject;
+	}
+
+
+	public void SetSaveFolder(string justTheFolderName){
+		saveFolderPath = Application.persistentDataPath + "/"+justTheFolderName;
+		saveFolderName = justTheFolderName;
+	}
+
+	public string GetSaveFolderName(){
+		return saveFolderName;
+	}
+
+	public string GetSaveFolderPath(){
+		return saveFolderPath;
 	}
 }

@@ -203,10 +203,12 @@ namespace CurvedVRKeyboard {
         public void checkErrors () {
             errorReporter = ErrorReporter.Instance;
             errorReporter.Reset();
+			/*
             if(keys.Length != KEY_NUMBER) {//is there correct number of keys
                 errorReporter.SetMessage("Cannot procced. Number of keys is incorrect. Revert your changes to prefab", ErrorReporter.Status.Error);
                 return;
             }
+            */
             if(space == null) { // project improted over older package crashes without this 
                 space = keys[spaceKeyNumber];
             }

@@ -56,11 +56,18 @@ public class MakeRoomMenu : MonoBehaviour {
 				room.GetComponent<Room> ().DestroyWalls();
 				break;
 			case 5: //Load
-				SwitchOnOffPanel(loadPanel);
+				if (!savePanel.activeSelf) {
+					SwitchOnOffPanel (loadPanel);
+					if (loadPanel.activeSelf) {
+						GameObject.Find ("LoadScrollView").GetComponent<LoadScrollViewScript> ().ListFolderNames ();
+					}
+				}
 				break;
 			case 6: //Save
-				SwitchOnOffPanel (savePanel);
-				SwitchOnOffPanel (keyboard);
+				if (!loadPanel.activeSelf) {
+					SwitchOnOffPanel (savePanel);
+					SwitchOnOffPanel (keyboard);
+				}
 				break;
 			case 7: //TopView				
 				SwitchOnOffPanel (topView);
