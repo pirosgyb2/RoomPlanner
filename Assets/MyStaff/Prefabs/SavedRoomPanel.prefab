@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114102812499168570}
   m_Layer: 8
   m_Name: SavedRoomPanel
-  m_TagString: Untagged
+  m_TagString: SavedRoomPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,8 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b6e8965b827d54f89a8c6e27e669c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadButton: {fileID: 114182042515114808, guid: f364d683be2b99e4599b63982cd71913,
-    type: 2}
 --- !u!114 &114395913396605246
 MonoBehaviour:
   m_ObjectHideFlags: 1

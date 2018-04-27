@@ -13,10 +13,10 @@ public class LoadButtonScript : MonoBehaviour {
 
 	public void Click(){
 		Room roomScript=room.GetComponent<Room>();
-		//TODO room mostani gameobjecteket disposeolni
+		//room mostani gameobjecteket destroyolni
 		roomScript.DestroyChildObjects();
 
-		//TODO loadolni a megfelelo mappabol
+		//loadolni a megfelelo mappabol
 		roomScript.SetSaveFolder(selectedRoomPanelName);
 		roomScript.Load ();
 		roomScript.SetSaveFolder (roomScript.defaultSaveFolderName);
