@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SaveButtonScript : MonoBehaviour {
-
+	/*
 	public GameObject room;
 	public Text inputField;
 	public bool isOpenNew = false;
@@ -22,6 +22,7 @@ public class SaveButtonScript : MonoBehaviour {
 			room.GetComponent<Room> ().DestroyWalls ();
 		}
 
-		//transform.parent.gameObject.SetActive (false);
+		transform.parent.gameObject.SetActive (false);
 	}
+	*/
 }
