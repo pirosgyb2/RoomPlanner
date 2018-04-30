@@ -12,13 +12,17 @@ public class LoadButtonScript : MonoBehaviour {
 	}
 
 	public void Click(){
-		Room roomScript=room.GetComponent<Room>();
-		//room mostani gameobjecteket destroyolni
-		roomScript.DestroyWalls();
+		if (selectedRoomPanelName != null) {
+			Room roomScript = room.GetComponent<Room> ();
+			//room mostani gameobjecteket destroyolni
+			roomScript.DestroyWalls ();
 
-		//loadolni a megfelelo mappabol
-		roomScript.SetSaveFolder(selectedRoomPanelName);
-		roomScript.Load ();
-		roomScript.SetSaveFolder (roomScript.defaultSaveFolderName);
+			//loadolni a megfelelo mappabol
+			roomScript.SetSaveFolder (selectedRoomPanelName);
+			roomScript.Load ();
+			roomScript.SetSaveFolder (roomScript.defaultSaveFolderName);
+
+			selectedRoomPanelName = null;
+		}
 	}
 }

@@ -21,6 +21,8 @@ public class DeleteButtonScript : MonoBehaviour {
 			roomScript.SetSaveFolder (roomScript.defaultSaveFolderName);
 
 			GameObject.Find ("LoadScrollView").GetComponent<LoadScrollViewScript> ().ListFolderNames ();
+
+			selectedRoomPanelName = null;
 		}
 	}
 }
