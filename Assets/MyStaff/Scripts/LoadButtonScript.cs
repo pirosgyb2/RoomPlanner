@@ -14,7 +14,7 @@ public class LoadButtonScript : MonoBehaviour {
 	public void Click(){
 		Room roomScript=room.GetComponent<Room>();
 		//room mostani gameobjecteket destroyolni
-		roomScript.DestroyChildObjects();
+		roomScript.DestroyWalls();
 
 		//loadolni a megfelelo mappabol
 		roomScript.SetSaveFolder(selectedRoomPanelName);

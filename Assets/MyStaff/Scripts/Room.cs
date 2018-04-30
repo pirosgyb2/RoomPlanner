@@ -109,12 +109,19 @@ public class Room : MonoBehaviour {
 		#endif
 	}
 
+	/// <summary>
+	/// A falakat gameobjecteit és a mentett fájljait is törlni.
+	/// </summary>
 	public void DestroyWalls(){
 		EmptyFolder (Application.persistentDataPath + "/"+defaultSaveFolderName);
 		DestroyChildObjects ();
+
 	}
 
-	public void DestroyChildObjects(){
+	/// <summary>
+	/// Csak a falak gameobjecteit törli, fájlból nem.
+	/// </summary>
+	private void DestroyChildObjects(){
 		for (int i = 0; i < transform.childCount; i++) {
 			Destroy (transform.GetChild (i).gameObject);
 		}

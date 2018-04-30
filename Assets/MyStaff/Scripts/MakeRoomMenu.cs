@@ -16,6 +16,7 @@ public class MakeRoomMenu : MonoBehaviour {
 	public GameObject loadPanel;
 	public GameObject savePanel;
 	public GameObject keyboard;
+	public GameObject newRoomPanel;
 
 	public Camera mainCamera;
 	public ClickMenuTree DefaultMenuTree;
@@ -78,6 +79,7 @@ public class MakeRoomMenu : MonoBehaviour {
 			case 9: //------nothing (perspView volt itt)
 				break;
 			case 10: //NewRoom
+				Instantiate(newRoomPanel,new Vector3(0,0,0), Quaternion.identity);
 				break;
 			case 11: //Move				
 				selectedWall.GetComponent<WallScript> ().SwitchMoveablePhysicsScript (true);

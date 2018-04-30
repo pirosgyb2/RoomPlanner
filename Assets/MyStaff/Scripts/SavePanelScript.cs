@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SavePanelScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+
+
+
 }

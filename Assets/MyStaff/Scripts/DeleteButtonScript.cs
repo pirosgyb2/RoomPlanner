@@ -12,13 +12,15 @@ public class DeleteButtonScript : MonoBehaviour {
 	}
 
 	public void Click(){
-		Room roomScript=room.GetComponent<Room>();
+		if (selectedRoomPanelName != null) {
+			Room roomScript = room.GetComponent<Room> ();
 
 
-		roomScript.SetSaveFolder(selectedRoomPanelName);
-		roomScript.DeleteFolder	 (roomScript.GetSaveFolderPath());
-		roomScript.SetSaveFolder (roomScript.defaultSaveFolderName);
+			roomScript.SetSaveFolder (selectedRoomPanelName);
+			roomScript.DeleteFolder (roomScript.GetSaveFolderPath ());
+			roomScript.SetSaveFolder (roomScript.defaultSaveFolderName);
 
-		GameObject.Find ("LoadScrollView").GetComponent<LoadScrollViewScript> ().ListFolderNames ();
+			GameObject.Find ("LoadScrollView").GetComponent<LoadScrollViewScript> ().ListFolderNames ();
+		}
 	}
 }

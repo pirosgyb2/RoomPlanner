@@ -8,6 +8,9 @@ TagManager:
   - TopView
   - SideView
   - SavedRoomPanel
+  - Room
+  - SavePanel
+  - MenuRoot
   layers:
   - Default
   - TransparentFX

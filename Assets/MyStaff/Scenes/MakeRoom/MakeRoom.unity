@@ -167,6 +167,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1033177195532252, guid: 898d6de4f1abd2c47b9ae75db214518d, type: 2}
+      propertyPath: m_TagString
+      value: MenuRoot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 898d6de4f1abd2c47b9ae75db214518d, type: 2}
   m_IsPrefabParent: 0
@@ -2321,6 +2325,8 @@ MonoBehaviour:
   loadPanel: {fileID: 1276319488}
   savePanel: {fileID: 1018064586}
   keyboard: {fileID: 1881394588}
+  newRoomPanel: {fileID: 1686899266109704, guid: a81cf4f9d19b8cd4c8cb565de2e6ab81,
+    type: 2}
   mainCamera: {fileID: 622132251}
   DefaultMenuTree: {fileID: 11400000, guid: 4cfe9981c89faf04899f5e9dffa700dc, type: 2}
   SelectedWallMenuTree: {fileID: 11400000, guid: 126ccf681f45fed4981556f613c1317f,
@@ -2336,7 +2342,7 @@ GameObject:
   - component: {fileID: 824780215}
   m_Layer: 0
   m_Name: Room
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3118,6 +3124,10 @@ Prefab:
     - target: {fileID: 1722541437162370, guid: ea816c720da49564ba57502170080f4c, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722541437162370, guid: ea816c720da49564ba57502170080f4c, type: 2}
+      propertyPath: m_TagString
+      value: SavePanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea816c720da49564ba57502170080f4c, type: 2}
