@@ -53,8 +53,8 @@ public class MakeRoomMenu : MonoBehaviour {
 				break;
 			case 3: //View				
 				break;
-			case 4: //Delete
-				room.GetComponent<Room> ().DestroyWalls();
+			case 4: //nothing , Delete volt, azert szedtem ki mert a new room vegul ugyan ezt csinalja, csak az jobban
+				/*room.GetComponent<Room> ().DestroyWalls();*/
 				break;
 			case 5: //Load
 				if (!savePanel.activeSelf) {
@@ -79,7 +79,8 @@ public class MakeRoomMenu : MonoBehaviour {
 			case 9: //------nothing (perspView volt itt)
 				break;
 			case 10: //NewRoom
-				Instantiate(newRoomPanel,new Vector3(0,0,0), Quaternion.identity);
+				Instantiate (newRoomPanel, new Vector3 (0, 0, 0), Quaternion.identity);
+				room.GetComponent<Room> ().CalculateRoomsCenter ();
 				break;
 			case 11: //Move				
 				selectedWall.GetComponent<WallScript> ().SwitchMoveablePhysicsScript (true);

@@ -8,6 +8,6 @@ public class NoButtonScript : MonoBehaviour {
 		GameObject room=GameObject.FindGameObjectWithTag ("Room");
 		room.GetComponent<Room> ().DestroyWalls ();
 		Destroy (transform.parent.gameObject);
-
+		room.transform.rotation=Quaternion.identity;
 	}
 }

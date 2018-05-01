@@ -24,6 +24,7 @@ public class SavePanelScript : MonoBehaviour {
 
 		if (isOpenNew) {
 			room.GetComponent<Room> ().DestroyWalls ();
+			room.transform.rotation = Quaternion.identity;
 		}
 
 		savePanel.SetActive (false);

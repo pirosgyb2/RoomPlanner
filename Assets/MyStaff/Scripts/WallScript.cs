@@ -17,7 +17,7 @@ public class WallScript : MonoBehaviour {
 
 	private DaydreamElements.ObjectManipulation.MoveablePhysicsObject moveablePhysicsScript;
 	private Renderer _renderer;
-	private Room parentScript;
+	private Room roomScript;
 	private bool selected=false;
 	private bool isPanelOpenedYet= false;
 	private GameObject instantiatedPanel;
@@ -25,7 +25,7 @@ public class WallScript : MonoBehaviour {
 
 
 	void Awake(){
-		parentScript=transform.parent.GetComponent<Room> ();
+		roomScript=transform.parent.GetComponent<Room> ();
 		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
 	}
 
@@ -36,14 +36,18 @@ public class WallScript : MonoBehaviour {
 		SwitchMoveablePhysicsScript(false);
 		transform.GetSiblingIndex ();
 	}
-
+		
 	public void SwitchMoveablePhysicsScript(bool enable){
 		if(enable){
+			roomScript.isRotatable = false;
 			moveablePhysicsScript.enabled=true;	
 		}
 		else{
+			print ("switch movePhysscript");
 			moveablePhysicsScript.enabled=false;
-			transform.parent.GetComponent<Room>().Save ();
+			roomScript.isRotatable = true;
+			roomScript.CalculateRoomsCenter();
+			roomScript.Save ();
 		}
 	}
 
@@ -73,7 +77,7 @@ public class WallScript : MonoBehaviour {
 	}
 
 	public void SetClicked(){
-		int previousSelectedIndex = parentScript.GetSelectedWallIndex ();
+		int previousSelectedIndex = roomScript.GetSelectedWallIndex ();
 
 		//GameObject previousSelected =null;
 		//previousSelected =GameObject.FindWithTag("SelectedWall");
@@ -81,7 +85,7 @@ public class WallScript : MonoBehaviour {
 	
 		//ha van kijelolt es ez a kijelolt nem onmaga akkor
 		if(previousSelectedIndex > -1 && previousSelectedIndex != transform.GetSiblingIndex()){
-			GameObject previousSelected=parentScript.transform.GetChild (previousSelectedIndex).gameObject;
+			GameObject previousSelected=roomScript.transform.GetChild (previousSelectedIndex).gameObject;
 			previousSelected.GetComponent<WallScript> ().SetInactive ();
 			previousSelected.GetComponent<WallScript> ().selected = false;
 		}
@@ -102,7 +106,7 @@ public class WallScript : MonoBehaviour {
 
 
 		selected = true;
-		parentScript.SetSelectedWallIndex (transform.GetSiblingIndex ());
+		roomScript.SetSelectedWallIndex (transform.GetSiblingIndex ());
 		if (selectedMaterial != null) {
 			_renderer.material = selectedMaterial;
 		}
@@ -113,7 +117,7 @@ public class WallScript : MonoBehaviour {
 	public void Save(){
 
 		BinaryFormatter binary = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/"+parentScript.GetSaveFolderName() +"/wall" + transform.GetSiblingIndex().ToString() + ".dat");
+		FileStream file = File.Create (Application.persistentDataPath + "/"+roomScript.GetSaveFolderName() +"/wall" + transform.GetSiblingIndex().ToString() + ".dat");
 		WallData dat = new WallData ();
 
 		dat.siblingIndex = gameObject.transform.GetSiblingIndex();
@@ -135,10 +139,10 @@ public class WallScript : MonoBehaviour {
 	}
 
 	public void Load(int id){
-		if (File.Exists (Application.persistentDataPath +"/"+parentScript.GetSaveFolderName() +"/wall" + id.ToString () + ".dat")){
+		if (File.Exists (Application.persistentDataPath +"/"+roomScript.GetSaveFolderName() +"/wall" + id.ToString () + ".dat")){
 			
 			BinaryFormatter binary = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/"+parentScript.GetSaveFolderName() +"/wall" + id.ToString () + ".dat",FileMode.Open);
+			FileStream file = File.Open (Application.persistentDataPath + "/"+roomScript.GetSaveFolderName() +"/wall" + id.ToString () + ".dat",FileMode.Open);
 			WallData dat = (WallData)binary.Deserialize (file);
 			file.Close ();
 
@@ -151,12 +155,12 @@ public class WallScript : MonoBehaviour {
 	}
 
 	public void Delete(){
-		string path = Application.persistentDataPath + "/"+parentScript.GetSaveFolderName() +"/wall" + transform.GetSiblingIndex() + ".dat";
+		string path = Application.persistentDataPath + "/"+roomScript.GetSaveFolderName() +"/wall" + transform.GetSiblingIndex() + ".dat";
 		if (File.Exists (path)) {
 
 			SetInactive ();
 
-			transform.parent.GetComponent<Room> ().SetSelectedWallIndex (-1);
+			roomScript.SetSelectedWallIndex (-1);
 			transform.parent = null;
 			Destroy (gameObject);
 

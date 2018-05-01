@@ -7,9 +7,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class AddWallScript : MonoBehaviour {
 	private Vector3 startingPosition;
-	private Renderer renderer;
-	private int addCounter=0;
 
+	private int addCounter=0;
+	private Renderer renderer;
 
 	public Material inactiveMaterial;
 	public Material gazedAtMaterial;

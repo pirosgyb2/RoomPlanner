@@ -10,6 +10,7 @@ public class ValueTextScript : MonoBehaviour {
 
 	void Start(){
 		GameObject wall = GameObject.FindGameObjectWithTag ("SelectedWall");
+		GameObject room = GameObject.FindGameObjectWithTag ("Room");
 
 		Vector3 scale= wall.transform.localScale;
 
@@ -27,6 +28,8 @@ public class ValueTextScript : MonoBehaviour {
 			break;
 		case 4:
 			value = wall.transform.localRotation.eulerAngles.y;
+			//value=360-(room.transform.eulerAngles.y-wall.transform.eulerAngles.y);
+			print ("room:"+room.transform.eulerAngles.y+"\nwall:"+wall.transform.eulerAngles.y+"\nfal rotate y:"+value);
 			break;
 		default:
 			print ("Nem jo szamot adtal meg az XYZ parameternek: " + XYZ.ToString ());
