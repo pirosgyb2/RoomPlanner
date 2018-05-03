@@ -15,12 +15,13 @@ public class LoadScrollViewScript : MonoBehaviour {
 	}
 
 	public void ListFolderNames(){
+		DeactivateWalls ();
 		DeleteSavedRoomPanelObjects ();
 
 		string[] folders = Directory.GetDirectories (Application.persistentDataPath);
 
-		foreach (string folder in folders) {			
-			string folderName = folder.Substring (folder.LastIndexOf ("\\")+1);
+		foreach (string folder in folders) {
+			string folderName = folder.Substring (folder.LastIndexOf ("/")+1);
 			if (!(folderName == "Unity" || folderName == "LastEditedRoom")) {
 				GameObject newPanel = Instantiate (savedRoomPanel,parentOfSavedRoomPanel.transform);
 				newPanel.GetComponentInChildren<Text> ().text = folderName;
@@ -32,6 +33,18 @@ public class LoadScrollViewScript : MonoBehaviour {
 		int parentChildCount=parentOfSavedRoomPanel.transform.childCount;
 		for (int i = 0; i < parentChildCount; i++) {
 			Destroy (parentOfSavedRoomPanel.transform.GetChild (i).gameObject);
+		}
+	}
+
+	private void DeactivateWalls(){
+		GameObject room = GameObject.FindGameObjectWithTag ("Room");
+		for (int i = 0; i < room.transform.childCount; i++) {
+			Transform wall=room.transform.GetChild (i);
+			WallScript wallScript = wall.gameObject.GetComponent<WallScript> ();
+			if (wallScript.IsSelected ()) {
+				wallScript.SetInactive ();
+			}
+
 		}
 	}
 }

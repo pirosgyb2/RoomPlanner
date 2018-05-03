@@ -46,8 +46,8 @@ public class MakeRoomMenu : MonoBehaviour {
 				StartCoroutine (LoadAsyncScene ());
 				break;
 			case 1: //Add
-				if(!room.GetComponent<Room>().IsAnithingAtSpwanPlace())
-					Instantiate (wall,wall.GetComponent<WallScript>().startingPosition,Quaternion.identity,room.transform);
+				if (!room.GetComponent<Room> ().IsAnithingAtSpwanPlace ())
+					Instantiate (wall, wall.GetComponent<WallScript> ().startingPosition, Quaternion.identity, room.transform);
 				break;
 			case 2: //File
 				break;
@@ -83,14 +83,15 @@ public class MakeRoomMenu : MonoBehaviour {
 				room.GetComponent<Room> ().CalculateRoomsCenter ();
 				break;
 			case 11: //Move				
-				selectedWall.GetComponent<WallScript> ().SwitchMoveablePhysicsScript (true);
+				selectedWall.GetComponent<WallScript> ().SwitchMoveablePhysicsScript (true,false);
 				break;
 			case 12: //Edit wall
 				//GameObject.FindGameObjectWithTag("SelectedWall").GetComponent<WallScript>().SwitchMoveablePhysicsScript(false);
-				selectedWall.GetComponent<WallScript>().SwitchMoveablePhysicsScript(false);
+				selectedWall.GetComponent<WallScript>().SwitchMoveablePhysicsScript(false,true);
 				break;
 			case 13: //Delete wall
 				selectedWall.GetComponent<WallScript> ().Delete ();
+				room.GetComponent<Room> ().CalculateRoomsCenter ();
 				room.GetComponent<Room> ().Save ();
 				break;
 			default:

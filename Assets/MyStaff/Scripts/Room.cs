@@ -37,7 +37,7 @@ public class Room : MonoBehaviour {
 
 	void Update(){
 		
-		if (GvrControllerInput.TouchDown && isRotatable) {
+		if ((GvrControllerInput.TouchDown || (GvrControllerInput.IsTouching && (GvrControllerInput.TouchPosCentered.x < 0.7f && GvrControllerInput.TouchPosCentered.x > -0.7f))) && isRotatable) {
 			
 			for (int i = 0; i < transform.childCount; i++) {
 				Transform wall = transform.GetChild (i);
@@ -47,6 +47,7 @@ public class Room : MonoBehaviour {
 
 		}
 		if (GvrControllerInput.IsTouching && isRotatable && (GvrControllerInput.TouchPosCentered.x > 0.7f || GvrControllerInput.TouchPosCentered.x < -0.7f)) {
+			
 			float rotSpeed = 2;
 
 			Vector2 touchPos = GvrControllerInput.TouchPosCentered;
@@ -57,7 +58,7 @@ public class Room : MonoBehaviour {
 			transform.RotateAround (roomCenter,Vector3.up,-rotY);
 
 		}
-		if (GvrControllerInput.TouchUp && isRotatable) {
+		if ((GvrControllerInput.TouchUp || (GvrControllerInput.IsTouching && (GvrControllerInput.TouchPosCentered.x < 0.7f && GvrControllerInput.TouchPosCentered.x > -0.7f))) && isRotatable) {
 			
 			for (int i = 0; i < transform.childCount; i++) {
 				Transform wall = transform.GetChild (i);
